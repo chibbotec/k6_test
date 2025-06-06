@@ -19,7 +19,7 @@ JVM 내부 메모리 락 -> Redis 락으로 변경
 | Iteration Rate | - | 5.5/s | 10.1/s | 84% 증가 |
 | Data Transfer | - | 29.7 kB/s | 54.3 kB/s | 83% 증가 |
 
-### 상세 메트릭 분석
+<!-- ### 상세 메트릭 분석
 | 메트릭 | 통계 | memory lock | redis | 변화 |
 |--------|------|----------|----------|------|
 | http_req_blocked | 평균 | 58µs | 38µs | 34% 개선 |
@@ -29,7 +29,7 @@ JVM 내부 메모리 락 -> Redis 락으로 변경
 | | p95 | 9s | 9s | 동일 |
 | http_req_receiving | 평균 | 71ms | 124ms | 75% 증가 |
 | iteration_duration | 평균 | 7s | 9s | 29% 증가 |
-| refresh_token_latency | 평균 | 1.56k/s | 2.01k/s | 29% 증가 |
+| refresh_token_latency | 평균 | 1.56k/s | 2.01k/s | 29% 증가 | -->
 
 
 ### 배포 결과
