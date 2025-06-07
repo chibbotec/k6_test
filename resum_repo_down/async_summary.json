@@ -1,0 +1,199 @@
+{
+    "metrics": {
+        "http_req_duration{expected_response:true}": {
+            "max": 57.428,
+            "p(90)": 11.209600000000002,
+            "p(95)": 13.151599999999997,
+            "avg": 9.723590393595737,
+            "min": 3.275,
+            "med": 8.454
+        },
+        "http_req_connecting": {
+            "max": 5.493,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.06548165443629085,
+            "min": 0,
+            "med": 0
+        },
+        "http_req_sending": {
+            "avg": 0.10193729152768521,
+            "min": 0.008,
+            "med": 0.053,
+            "max": 7.532,
+            "p(90)": 0.139,
+            "p(95)": 0.2152999999999998
+        },
+        "http_req_duration": {
+            "p(95)": 13.151599999999997,
+            "avg": 9.723590393595737,
+            "min": 3.275,
+            "med": 8.454,
+            "max": 57.428,
+            "p(90)": 11.209600000000002,
+            "thresholds": {
+                "p(95)<50000": false
+            }
+        },
+        "http_req_blocked": {
+            "p(95)": 0.13439999999999974,
+            "avg": 0.12949166110740473,
+            "min": 0.002,
+            "med": 0.022,
+            "max": 10.092,
+            "p(90)": 0.072
+        },
+        "data_sent": {
+            "count": 565906,
+            "rate": 754.5114516618016
+        },
+        "http_req_receiving": {
+            "avg": 2.49717278185457,
+            "min": 0.036,
+            "med": 2.434,
+            "max": 32.35,
+            "p(90)": 3.1392,
+            "p(95)": 3.7295999999999996
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 1499,
+            "value": 0
+        },
+        "data_received": {
+            "rate": 1318.7064406167924,
+            "count": 989069
+        },
+        "vus_max": {
+            "min": 20,
+            "max": 20,
+            "value": 20
+        },
+        "task_completion_time": {
+            "min": 5007,
+            "med": 10017,
+            "max": 20041,
+            "p(90)": 10032.8,
+            "p(95)": 15032.6,
+            "avg": 8110.0224719101125,
+            "thresholds": {
+                "p(90)<300000": false
+            }
+        },
+        "checks": {
+            "passes": 3176,
+            "fails": 87,
+            "value": 0.973337419552559
+        },
+        "iteration_duration": {
+            "min": 5017.228167,
+            "med": 10030.9725,
+            "max": 300795.207125,
+            "p(90)": 300646.9032916,
+            "p(95)": 300720.74799135,
+            "avg": 40317.92484456
+        },
+        "http_req_tls_handshaking": {
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "http_req_waiting": {
+            "p(90)": 8.0844,
+            "p(95)": 9.7241,
+            "avg": 7.124480320213475,
+            "min": 2.796,
+            "med": 5.738,
+            "max": 54.923
+        },
+        "vus": {
+            "value": 1,
+            "min": 0,
+            "max": 20
+        },
+        "download_duration": {
+            "med": 12,
+            "max": 58,
+            "p(90)": 51,
+            "p(95)": 52.099999999999994,
+            "avg": 21.630252100840337,
+            "min": 6
+        },
+        "iterations": {
+            "count": 100,
+            "rate": 0.13332805300912196
+        },
+        "errors": {
+            "passes": 11,
+            "fails": 100,
+            "thresholds": {
+                "rate<0.05": true
+            },
+            "value": 0.0990990990990991
+        },
+        "http_reqs": {
+            "count": 1499,
+            "rate": 1.998587514606738
+        }
+    },
+    "root_group": {
+        "groups": {},
+        "checks": {
+                "async download request successful": {
+                    "fails": 0,
+                    "name": "async download request successful",
+                    "path": "::async download request successful",
+                    "id": "3f25f425787c3387d157d8e7da44c8eb",
+                    "passes": 119
+                },
+                "async response has taskId": {
+                    "name": "async response has taskId",
+                    "path": "::async response has taskId",
+                    "id": "9b76fed6773d9d46755133ec326866e3",
+                    "passes": 119,
+                    "fails": 0
+                },
+                "async status request successful": {
+                    "path": "::async status request successful",
+                    "id": "dfd042242dd23a5572c3e2e5cb179f5d",
+                    "passes": 1379,
+                    "fails": 0,
+                    "name": "async status request successful"
+                },
+                "async status response is valid": {
+                    "name": "async status response is valid",
+                    "path": "::async status response is valid",
+                    "id": "cdba39188d8bb660cb6518dc4836d7f8",
+                    "passes": 1379,
+                    "fails": 0
+                },
+                "async task completed successfully": {
+                    "passes": 89,
+                    "fails": 0,
+                    "name": "async task completed successfully",
+                    "path": "::async task completed successfully",
+                    "id": "c8f4921aaa2c5b1f589bb7b5d3503145"
+                },
+                "async has saved files": {
+                    "name": "async has saved files",
+                    "path": "::async has saved files",
+                    "id": "70237f3c596530887c9326713c58c9b8",
+                    "passes": 89,
+                    "fails": 0
+                },
+                "async error rate acceptable": {
+                    "name": "async error rate acceptable",
+                    "path": "::async error rate acceptable",
+                    "id": "9f230a10d261253426fa3ee61ae1c1ce",
+                    "passes": 2,
+                    "fails": 87
+                }
+            },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+}

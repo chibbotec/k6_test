@@ -1,0 +1,199 @@
+{
+    "root_group": {
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {},
+        "checks": {
+                "serial download request successful": {
+                    "name": "serial download request successful",
+                    "path": "::serial download request successful",
+                    "id": "6385a1a1467d33c7739de1d9a193f1db",
+                    "passes": 116,
+                    "fails": 0
+                },
+                "serial response has taskId": {
+                    "path": "::serial response has taskId",
+                    "id": "ff3786d2860d30c76283040d20b5dfae",
+                    "passes": 116,
+                    "fails": 0,
+                    "name": "serial response has taskId"
+                },
+                "serial status request successful": {
+                    "id": "f0fb1461ee1af564875e403bb6713bd5",
+                    "passes": 1384,
+                    "fails": 0,
+                    "name": "serial status request successful",
+                    "path": "::serial status request successful"
+                },
+                "serial status response is valid": {
+                    "name": "serial status response is valid",
+                    "path": "::serial status response is valid",
+                    "id": "534ad4361c6b848126b357ceaeac6a05",
+                    "passes": 1384,
+                    "fails": 0
+                },
+                "serial task completed successfully": {
+                    "id": "6721f5591494ef1d19e61eb3b2bc3df2",
+                    "passes": 96,
+                    "fails": 0,
+                    "name": "serial task completed successfully",
+                    "path": "::serial task completed successfully"
+                },
+                "serial has saved files": {
+                    "fails": 1,
+                    "name": "serial has saved files",
+                    "path": "::serial has saved files",
+                    "id": "608dd65804d138f2cc4a0b88bd67ce86",
+                    "passes": 95
+                },
+                "serial error rate acceptable": {
+                    "name": "serial error rate acceptable",
+                    "path": "::serial error rate acceptable",
+                    "id": "2b81232f67f69bb8b049304b4f4b7123",
+                    "passes": 3,
+                    "fails": 93
+                }
+            },
+        "name": ""
+    },
+    "metrics": {
+        "http_req_waiting": {
+            "avg": 7.01203864090606,
+            "min": 2.707,
+            "med": 5.552,
+            "max": 89.16,
+            "p(90)": 7.672,
+            "p(95)": 8.903
+        },
+        "http_req_receiving": {
+            "max": 53.377,
+            "p(90)": 2.955,
+            "p(95)": 3.417,
+            "avg": 2.422682878081277,
+            "min": 0.022,
+            "med": 2.44
+        },
+        "iteration_duration": {
+            "p(95)": 50157.5081975,
+            "avg": 27899.144623281256,
+            "min": 5014.356667,
+            "med": 30073.179625,
+            "max": 60168.119292,
+            "p(90)": 45101.462292000004
+        },
+        "http_req_blocked": {
+            "min": 0.002,
+            "med": 0.021,
+            "max": 22.369,
+            "p(90)": 0.052,
+            "p(95)": 0.084,
+            "avg": 0.13414790139906732
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 1501,
+            "value": 0
+        },
+        "vus": {
+            "value": 1,
+            "min": 0,
+            "max": 20
+        },
+        "http_req_duration": {
+            "avg": 9.510764823451032,
+            "min": 3.163,
+            "med": 8.079,
+            "max": 91.754,
+            "p(90)": 10.434,
+            "p(95)": 12.267,
+            "thresholds": {
+                "p(95)<50000": false
+            }
+        },
+        "http_reqs": {
+            "rate": 2.0012644658205354,
+            "count": 1501
+        },
+        "data_received": {
+            "count": 979742,
+            "rate": 1306.2777150379368
+        },
+        "errors": {
+            "passes": 0,
+            "fails": 96,
+            "thresholds": {
+                "rate<0.05": false
+            },
+            "value": 0
+        },
+        "http_req_tls_handshaking": {
+            "p(95)": 0,
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0
+        },
+        "iterations": {
+            "count": 96,
+            "rate": 0.12799559541557057
+        },
+        "http_req_duration{expected_response:true}": {
+            "med": 8.079,
+            "max": 91.754,
+            "p(90)": 10.434,
+            "p(95)": 12.267,
+            "avg": 9.510764823451032,
+            "min": 3.163
+        },
+        "checks": {
+            "passes": 3194,
+            "fails": 94,
+            "value": 0.9714111922141119
+        },
+        "http_req_connecting": {
+            "med": 0,
+            "max": 9.637,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.07518720852764821,
+            "min": 0
+        },
+        "http_req_sending": {
+            "p(90)": 0.101,
+            "p(95)": 0.159,
+            "avg": 0.0760433044636912,
+            "min": 0.006,
+            "med": 0.049,
+            "max": 5.538
+        },
+        "data_sent": {
+            "count": 523810,
+            "rate": 698.3893003607293
+        },
+        "vus_max": {
+            "max": 20,
+            "value": 20,
+            "min": 20
+        },
+        "download_duration": {
+            "avg": 19.137931034482758,
+            "min": 4,
+            "med": 9.5,
+            "max": 66,
+            "p(90)": 51,
+            "p(95)": 53.24999999999999
+        },
+        "task_completion_time": {
+            "max": 60134,
+            "p(90)": 45088.5,
+            "p(95)": 50106,
+            "avg": 27878.208333333332,
+            "min": 5008,
+            "med": 30059,
+            "thresholds": {
+                "p(90)<300000": false
+            }
+        }
+    }
+}

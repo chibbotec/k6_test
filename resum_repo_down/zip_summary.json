@@ -1,0 +1,199 @@
+{
+    "root_group": {
+        "checks": {
+            "zip download request successful": {
+                "id": "f0d13b075fc3c178435ad52fa0811fbe",
+                "passes": 634,
+                "fails": 0,
+                "name": "zip download request successful",
+                "path": "::zip download request successful"
+            },
+            "zip response has taskId": {
+                "name": "zip response has taskId",
+                "path": "::zip response has taskId",
+                "id": "6d5049896f6e95962faf4c0c128dfddc",
+                "passes": 634,
+                "fails": 0
+            },
+            "zip status request successful": {
+                "passes": 1383,
+                "fails": 0,
+                "name": "zip status request successful",
+                "path": "::zip status request successful",
+                "id": "ef6e87669363de7a1f3c5ec9b69f2be7"
+            },
+            "zip status response is valid": {
+                "path": "::zip status response is valid",
+                "id": "abc9a2ec4dd5dc4be2dd09f6b28cb54a",
+                "passes": 1383,
+                "fails": 0,
+                "name": "zip status response is valid"
+            },
+            "zip task completed successfully": {
+                "name": "zip task completed successfully",
+                "path": "::zip task completed successfully",
+                "id": "ecb4db1d2bb402201a3df0d9ddc6a15d",
+                "passes": 614,
+                "fails": 0
+            },
+            "zip has saved files": {
+                "name": "zip has saved files",
+                "path": "::zip has saved files",
+                "id": "4ad1786b2a50028d5ecf8c91c73cee56",
+                "passes": 0,
+                "fails": 614
+            },
+            "zip error rate acceptable": {
+                "id": "a725dce046f8e629ea8294020dcb39d5",
+                "passes": 614,
+                "fails": 0,
+                "name": "zip error rate acceptable",
+                "path": "::zip error rate acceptable"
+            }
+        },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {}
+    },
+    "metrics": {
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 2018,
+            "value": 0
+        },
+        "checks": {
+            "passes": 5262,
+            "fails": 614,
+            "value": 0.8955071477195371
+        },
+        "http_req_duration": {
+            "p(90)": 25.590500000000063,
+            "p(95)": 49.364,
+            "avg": 12.470898414271538,
+            "min": 3.38,
+            "med": 7.8645,
+            "max": 97.745,
+            "thresholds": {
+                "p(95)<50000": false
+            }
+        },
+        "iterations": {
+            "count": 614,
+            "rate": 0.8186140079562483
+        },
+        "http_req_duration{expected_response:true}": {
+            "avg": 12.470898414271538,
+            "min": 3.38,
+            "med": 7.8645,
+            "max": 97.745,
+            "p(90)": 25.590500000000063,
+            "p(95)": 49.364
+        },
+        "http_reqs": {
+            "count": 2018,
+            "rate": 2.6904935961819363
+        },
+        "http_req_blocked": {
+            "p(90)": 0.057300000000000045,
+            "p(95)": 0.099,
+            "avg": 0.11219078295341926,
+            "min": 0.001,
+            "med": 0.019,
+            "max": 43.422
+        },
+        "errors": {
+            "passes": 0,
+            "fails": 614,
+            "thresholds": {
+                "rate<0.05": false
+            },
+            "value": 0
+        },
+        "download_duration": {
+            "max": 66,
+            "p(90)": 51,
+            "p(95)": 53,
+            "avg": 20.529968454258675,
+            "min": 4,
+            "med": 9
+        },
+        "iteration_duration": {
+            "min": 5012.6065,
+            "med": 5034.2405205,
+            "max": 25111.621166,
+            "p(90)": 10087.2313582,
+            "p(95)": 15048.93174155,
+            "avg": 7294.11387621173
+        },
+        "data_received": {
+            "count": 1034327,
+            "rate": 1379.0139592953785
+        },
+        "task_completion_time": {
+            "avg": 7272.052117263844,
+            "min": 5006,
+            "med": 5012,
+            "max": 25076,
+            "p(90)": 10041.8,
+            "p(95)": 15030,
+            "thresholds": {
+                "p(90)<300000": false
+            }
+        },
+        "http_req_tls_handshaking": {
+            "avg": 0,
+            "min": 0,
+            "med": 0,
+            "max": 0,
+            "p(90)": 0,
+            "p(95)": 0
+        },
+        "data_sent": {
+            "count": 2052439,
+            "rate": 2736.4093092438343
+        },
+        "http_req_connecting": {
+            "max": 43.25,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.07311496531219026,
+            "min": 0,
+            "med": 0
+        },
+        "vus": {
+            "value": 1,
+            "min": 0,
+            "max": 20
+        },
+        "http_req_sending": {
+            "med": 0.06,
+            "max": 7.35,
+            "p(90)": 0.158,
+            "p(95)": 0.238,
+            "avg": 0.09970515361744309,
+            "min": 0.008
+        },
+        "vus_max": {
+            "value": 20,
+            "min": 20,
+            "max": 20
+        },
+        "http_req_waiting": {
+            "max": 95.446,
+            "p(90)": 23.10300000000009,
+            "p(95)": 46.751599999999996,
+            "avg": 10.013205649157573,
+            "min": 2.801,
+            "med": 5.3865
+        },
+        "http_req_receiving": {
+            "p(90)": 2.8835,
+            "p(95)": 3.349499999999999,
+            "avg": 2.357987611496526,
+            "min": 0.026,
+            "med": 2.387,
+            "max": 16.175
+        }
+    }
+}

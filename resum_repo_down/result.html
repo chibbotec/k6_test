@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K6 성능 테스트 결과 비교</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .test-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+        }
+        
+        .test-info h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .improved {
+            border-left-color: #48bb78;
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+        }
+        
+        .degraded {
+            border-left-color: #f56565;
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+        }
+        
+        .neutral {
+            border-left-color: #4299e1;
+            background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+        }
+        
+        .metric-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .metric-values {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .value {
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .change {
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .positive {
+            background: #c6f6d5;
+            color: #276749;
+        }
+        
+        .negative {
+            background: #fed7d7;
+            color: #c53030;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:hover {
+            background: #f7fafc;
+        }
+        
+        .metric-row {
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .better {
+            color: #38a169;
+            font-weight: 600;
+        }
+        
+        .worse {
+            color: #e53e3e;
+            font-weight: 600;
+        }
+        
+        .insights {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .insights h3 {
+            color: #744210;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .insights ul {
+            list-style: none;
+            color: #744210;
+        }
+        
+        .insights li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .insights li::before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 K6 성능 테스트 결과 비교</h1>
+        
+        <div class="summary">
+            <div class="test-info">
+                <h2>Serial Download</h2>
+                <p>Duration: 750.2초 (12.5분)</p>
+                <p>Request Rate: 2.0/s</p>
+                <p>Duration: 9.5ms (avg)</p>
+            </div>
+            <div class="test-info">
+                <h2>Async Download</h2>
+                <p>Duration: 750.1초 (12.5분)</p>
+                <p>Request Rate: 2.0/s</p>
+                <p>Duration: 9.7ms (avg)</p>
+            </div>
+            <div class="test-info">
+                <h2>Zip Download</h2>
+                <p>Duration: 750.3초 (12.5분)</p>
+                <p>Request Rate: 2.69/s</p>
+                <p>Duration: 12.5ms (avg)</p>
+            </div>
+        </div>
+        
+        <div class="key-metrics">
+            <div class="metric-card improved">
+                <div class="metric-name">HTTP Request Duration (평균)</div>
+                <div class="metric-values">
+                    <span class="value">모든 방식: 9.5~12.5ms</span>
+                    <span class="change positive">비슷한 수준</span>
+                </div>
+            </div>
+            
+            <div class="metric-card improved">
+                <div class="metric-name">Task Completion Time</div>
+                <div class="metric-values">
+                    <span class="value">Serial: 27.9s → Zip: 7.3s</span>
+                    <span class="change positive">74% 개선</span>
+                </div>
+            </div>
+            
+            <div class="metric-card improved">
+                <div class="metric-name">Iteration Rate</div>
+                <div class="metric-values">
+                    <span class="value">Serial: 96 → Zip: 614</span>
+                    <span class="change positive">540% 증가</span>
+                </div>
+            </div>
+            
+            <div class="metric-card neutral">
+                <div class="metric-name">Error Rate</div>
+                <div class="metric-values">
+                    <span class="value">모든 방식: 0~9.9%</span>
+                    <span class="change positive">Zip 0% 최고</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>메트릭</th>
+                        <th>통계</th>
+                        <th>Serial</th>
+                        <th>Async</th>
+                        <th>Zip</th>
+                        <th>변화</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="metric-row">http_req_blocked</td>
+                        <td>평균</td>
+                        <td>134µs</td>
+                        <td>129µs</td>
+                        <td>112µs</td>
+                        <td class="better">16% 개선 (Zip)</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-row">http_req_duration</td>
+                        <td>평균</td>
+                        <td>9.5ms</td>
+                        <td>9.7ms</td>
+                        <td>12.5ms</td>
+                        <td class="better">Serial 최고</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-row">http_req_receiving</td>
+                        <td>평균</td>
+                        <td>2.4ms</td>
+                        <td>2.5ms</td>
+                        <td>2.4ms</td>
+                        <td class="better">동일 수준</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-row">iteration_duration</td>
+                        <td>평균</td>
+                        <td>27.9s</td>
+                        <td>40.3s</td>
+                        <td>7.3s</td>
+                        <td class="better">74% 개선 (Zip)</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-row">task_completion_time</td>
+                        <td>평균</td>
+                        <td>27.9s</td>
+                        <td>8.1s</td>
+                        <td>7.3s</td>
+                        <td class="better">74% 개선 (Zip)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>중간값</td>
+                        <td>30.1s</td>
+                        <td>10.0s</td>
+                        <td>5.0s</td>
+                        <td class="better">83% 개선 (Zip)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>p90</td>
+                        <td>45.1s</td>
+                        <td>10.0s</td>
+                        <td>10.0s</td>
+                        <td class="better">78% 개선 (Async/Zip)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>p95</td>
+                        <td>50.1s</td>
+                        <td>15.0s</td>
+                        <td>15.0s</td>
+                        <td class="better">70% 개선 (Async/Zip)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="insights">
+            <h3>📊 주요 인사이트</h3>
+            <ul>
+                <li><strong>처리량은 여전히 큰 차이:</strong> Zip(614회) > Async(100회) > Serial(96회) 순으로 처리량 차이가 명확함</li>
+                <li><strong>작업 완료 시간의 극명한 차이:</strong> 
+                    - Zip: 7.3초 (가장 빠름)
+                    - Async: 8.1초
+                    - Serial: 27.9초 (Zip 대비 3.8배 느림)</li>
+                <li><strong>Iteration Duration이 핵심 차이점:</strong>
+                    - Zip: 7.3초 (병렬 처리로 빠른 완료)
+                    - Serial: 27.9초 (순차 처리로 느림)
+                    - Async: 40.3초 (비동기지만 오버헤드 존재)</li>
+                <li><strong>안정성 측면:</strong>
+                    - Zip: 0% 에러율 (완벽)
+                    - Serial: 0% HTTP 에러, 하지만 error rate acceptable 체크 실패 다수
+                    - Async: 9.9% 에러율</li>
+                <li><strong>결론:</strong> HTTP 프로토콜 수준에서는 비슷한 성능을 보이지만, 애플리케이션 로직(파일 처리 방식)에서 극명한 차이 발생</li>
+                <li><strong>권장사항:</strong>
+                    - 대량 파일 처리: Zip 방식 (가장 빠른 완료, 높은 처리량)
+                    - 안정적인 개별 요청: Serial 방식도 고려 가능 (일관된 응답)
+                    - Async는 중간 성능으로 특별한 장점 없음</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
